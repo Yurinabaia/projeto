@@ -37,6 +37,7 @@ export function sriptData() {
   calcNumTasks();
   calcFinishedTasks();
 
+  // Adicionar produtos
   btnAddProdutos.addEventListener("click", async () => {
     let exict = 0, index = localStorage.getItem("index") ?? 0;
     produtos.forEach((prod) => {
@@ -80,6 +81,8 @@ export function sriptData() {
     else {
       localStorage.setItem("index", index);
     }
+
+    //Aqui vou consumir api para buscar imagens e descrição do produto
     const apiFetch = new FetchApi();
     const api = await apiFetch.getApi(`https://fakestoreapi.com/products/${parseInt(index)}`);
 
@@ -160,6 +163,8 @@ export function sriptData() {
     addDados.value = "";
     produtos = Array.from(document.querySelectorAll(".produtos"));
   });
+
+  //Botao para mostra o modal com produtos cadastrados
   document.addEventListener("click", async (event) => {
     if (
       event.target.className === "produtos" ||
@@ -181,20 +186,6 @@ export function sriptData() {
       ima.style.width = "100px";
       ima.style.height = "100px";
 
-      // let actions = document.createElement("div");
-      // actions.classList.add("actions");
-
-      // let edit = document.createElement("i");
-      // edit.classList.add("fa", "fa-edit", "edit");
-
-      // let deleteBtn = document.createElement("i");
-      // deleteBtn.classList.add("fa", "fa-trash", "delete");
-
-      // let save = document.createElement("i");
-      // save.classList.add("fa", "fa-check", "save");
-      // actions.appendChild(edit);
-      // actions.appendChild(deleteBtn);
-      // actions.appendChild(save);
       
       let p = document.createElement("p");
       let text = document.createTextNode(event.target.textContent);
@@ -204,7 +195,6 @@ export function sriptData() {
       overlay.classList.add("overlay");
       overlay.id = "overlay";
 
-      // message.appendChild(actions);
       message.appendChild(p);
       message.appendChild(ima);
       document.body.appendChild(message);
@@ -219,6 +209,7 @@ export function sriptData() {
     }
   });
 
+  //Botao para deletar produto e atualizar o numero de produtos
   document.addEventListener("click", (event) => {
     if (event.target.classList.contains("deleteBtn")) {
       let parent = event.target.parentNode;
