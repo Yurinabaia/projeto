@@ -1,5 +1,19 @@
-* {
-    box-sizing: border-box;
+@media (max-width: 500px) {
+    .principal {
+        width: 400px;
+    }
+}
+
+@media (max-width: 800px) {
+    .principal {
+        width: 400px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .principal {
+        width: 400px;
+    }
 }
 
 body {
@@ -80,23 +94,7 @@ body {
     z-index: 2;
 }
 
-@media (max-width: 500px) {
-    .principal {
-        width: 400px;
-    }
-}
 
-@media (max-width: 800px) {
-    .principal {
-        width: 400px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .principal {
-        width: 400px;
-    }
-}
 
 .principal {
     width: 600px;
@@ -117,6 +115,7 @@ body {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    background-color: #9e37a5;
 }
 
 .principal .add input.addDados {
@@ -136,7 +135,7 @@ body {
     cursor: pointer;
     text-align: center;
     color: #fff;
-    background-color: #112031;
+    background-color: #12acf5;
     border-radius: 50%;
     line-height: 48px;
     text-align: center;
@@ -267,4 +266,7 @@ body {
 
 .principal .dadosStaticos .concluido span {
     background-color: #bfb523a2;
+}
+* {
+    box-sizing: border-box;
 }
