@@ -1,0 +1,270 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    margin: 0;
+    display: flex;
+}
+
+.pop-up-message {
+    width: 500px;
+    min-height: 250px;
+    position: absolute;
+    border-radius: 15px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.pop-up-message .iconNo {
+    margin-top: 45px;
+    font-size: 70px;
+    color: red;
+    display: inline-block;
+    text-align: center;
+}
+
+.pop-up-message .checkExict {
+    margin-top: 25px;
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.pop-up-message .actions {
+    float: right;
+    text-align: right;
+    margin: 10px 0;
+}
+
+.pop-up-message .actions i {
+    padding: 2.5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.pop-up-message .actions .edit {
+    color: #2d46b9;
+}
+
+.pop-up-message .actions .delete {
+    color: #bd1616;
+}
+
+.pop-up-message .actions .save {
+    color: #064420;
+}
+
+.pop-up-message p {
+    line-height: 1.4;
+    font-size: 16px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(214, 209, 209, 0.5);
+    z-index: 2;
+}
+
+@media (max-width: 500px) {
+    .principal {
+        width: 400px;
+    }
+}
+
+@media (max-width: 800px) {
+    .principal {
+        width: 400px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .principal {
+        width: 400px;
+    }
+}
+
+.principal {
+    width: 600px;
+    margin: auto;
+    padding: 30px 0;
+    border-radius: 10px;
+}
+
+.principal .secundario {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.principal .add {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.principal .add input.addDados {
+    width: 95%;
+    padding: 15px 10px;
+    border: none;
+    background-color: #f6f6f6;
+    outline: none;
+    border-radius: 5px;
+}
+
+.principal .add .addBtn {
+    position: absolute;
+    height: 48px;
+    width: 48px;
+    font-size: 25px;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    background-color: #112031;
+    border-radius: 50%;
+    line-height: 48px;
+    text-align: center;
+    right: 3%;
+    transition: transform 0.4s;
+}
+
+.principal .add .addBtn:hover {
+    transform: rotate(180deg);
+}
+
+.principal .listaDados {
+    max-height: 400px;
+    min-height: 400px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+.principal .listaDados .listaVazia {
+    text-align: center;
+    display: block;
+    font-size: 18px;
+    color: #334756;
+    font-weight: 700;
+    padding: 25px;
+    user-select: none;
+}
+
+.principal .listaDados .produtos {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    border-bottom: 2px solid #ccc;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.principal .listaDados .produtos.finished {
+    text-decoration: line-through;
+}
+
+.principal .listaDados .produtos:hover {
+    background-color: #f2f1f1;
+    transition: 0.3s;
+}
+
+.principal .listaDados .produtos .actions {
+    position: absolute;
+    right: -15%;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    background-color: red;
+    transition: 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.principal .listaDados .produtos .actions i {
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    line-height: 45px;
+    transition: 0.3s;
+}
+
+.principal .listaDados .produtos .actions i:hover {
+    font-size: 19px;
+}
+
+.principal .listaDados .produtos .actions .deleteBtn {
+    background-color: #ed0000;
+    color: #fff;
+}
+
+.principal .listaDados .produtos .actions .finishBtn {
+    background-color: #bfb523;
+    color: #fff;
+}
+
+.principal .listaDados .produtos .actions .not-finishBtn {
+    background-color: #0bb311e6;
+    color: #fff;
+}
+
+.principal .listaDados .produtos:hover .actions {
+    right: 0;
+}
+
+.principal .listaDados .produtos p {
+    max-width: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.principal .dadosStaticos {
+    width: 100%;
+    height: 50px;
+}
+
+.principal .dadosStaticos>div {
+    width: 50%;
+    padding: 15px;
+    font-size: 15px;
+    user-select: none;
+}
+
+.principal .dadosStaticos>div span {
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.principal .dadosStaticos .count {
+    float: left;
+}
+
+.principal .dadosStaticos .count span {
+    background-color: #0bb31061;
+}
+
+.principal .dadosStaticos .concluido {
+    float: right;
+    text-align: right;
+}
+
+.principal .dadosStaticos .concluido span {
+    background-color: #bfb523a2;
+}
