@@ -1,21 +1,18 @@
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .principal {
-        width: 400px;
+        width: 400px !important;
     }
 }
-
-@media (max-width: 800px) {
+@media (max-width: 400px) {
     .principal {
-        width: 400px;
+        width: 350px !important;
     }
 }
-
-@media (max-width: 1200px) {
+@media (max-width: 350px) {
     .principal {
-        width: 400px;
+        width: 300px !important;
     }
 }
-
 
 body {
     font-family: "Roboto", sans-serif;
@@ -229,11 +226,12 @@ body {
 
 .principal .listaDados .produtos p {
     max-width: 80%;
-    white-space: pre-line;
+    white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     position: inherit;
     display: flex;
+    flex-wrap: nowrap;
 }
 
 .principal .dadosStaticos {
