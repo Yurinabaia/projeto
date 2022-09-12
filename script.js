@@ -170,9 +170,6 @@ export function sriptData() {
       event.target.className === "produtos" ||
       event.target.className === "detail"
     ) {
-      let index = localStorage.getItem("index") ?? 1;
-      const apiFetch = new FetchApi();
-      const api = await apiFetch.getApi(`https://fakestoreapi.com/products/${parseInt(index)}`);
 
       let message = document.createElement("div");
       message.classList.add("pop-up-message");
@@ -180,9 +177,9 @@ export function sriptData() {
 
       let ima = document.createElement("img");
       ima.classList.add("img");
-      ima.src = api.image;
-      ima.alt = api.title;
-      ima.title = api.title;
+      ima.src = event.target.parentNode.childNodes[6].src;
+      ima.alt = event.target.parentNode.childNodes[6].alt;
+      ima.title = event.target.parentNode.childNodes[6].title;
       ima.style.width = "100px";
       ima.style.height = "100px";
 
