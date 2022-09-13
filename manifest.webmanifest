@@ -1,0 +1,12 @@
+{
+  "name": "Minha primeira PWA",
+  "short_name": "PWA",
+  "description": "Esta é a primeira PWA que eu criei para aprender como se faz isso.",
+  "lang": "pt-BR",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#f66",
+  "dir": "ltr"
+}

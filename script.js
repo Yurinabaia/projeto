@@ -47,7 +47,8 @@ export function sriptData() {
       listProdutosSalvos = JSON.parse(localStorage.getItem("produtos"));
     }
     for (let i = 0; i < produtosNaLista.length; i++) {
-      if (produtosNaLista[i].innerHTML.includes(produtoBuscar)) {
+      var splitDados = produtosNaLista[i].textContent.split(".")[0];
+      if (splitDados == produtoBuscar) {
         existProdutosNaLista = true;
         break;
       }
@@ -99,7 +100,7 @@ export function sriptData() {
     prod.classList.add("produtos");
 
     let p = document.createElement("p");
-    let text = document.createTextNode(produtoBuscar + "\t");
+    let text = document.createTextNode(produtoBuscar + ".\t");
     p.classList.add("detail");
     p.style.textAlign = "center";
     p.appendChild(text);
