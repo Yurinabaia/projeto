@@ -39,58 +39,67 @@ export function sriptData() {
 
   // Adicionar produtos
   btnAddProdutos.addEventListener("click", async () => {
-    let exict = 0, index = localStorage.getItem("index") ?? 0;
-    produtos.forEach((prod) => {
-      if (prod.textContent === addDados.value) {
-        let message = document.createElement("div");
-        message.classList.add("pop-up-message");
-        message.id = "message";
-
-        let icon = document.createElement("i");
-        icon.classList.add("fa", "fa-times-circle", "iconNo");
-
-        let p = document.createElement("p");
-        p.classList.add("checkExict");
-        let text = document.createTextNode("Produto existente, desculpe mas não é possível adicionar o mesmo produto duas vezes.");
-        p.appendChild(text);
-
-        let overlay = document.createElement("div");
-        overlay.classList.add("overlay");
-        overlay.id = "overlay";
-
-        message.appendChild(icon);
-        message.appendChild(p);
-
-        document.body.appendChild(message);
-        document.body.appendChild(overlay);
-        let show = setTimeout(() => {
-          message.remove();
-          overlay.remove();
-        }, 2000);
-        exict = 1;
+    let exict = 0, listProdutosSalvos = [];
+    var produtosNaLista = produtosVariados.getElementsByClassName("produtos");
+    var existProdutosNaLista = false;
+    var produtoBuscar = addDados.value.toUpperCase();
+    if (localStorage.getItem("produtos") != null) {
+      listProdutosSalvos = JSON.parse(localStorage.getItem("produtos"));
+    }
+    for (let i = 0; i < produtosNaLista.length; i++) {
+      if (produtosNaLista[i].innerHTML.includes(produtoBuscar)) {
+        existProdutosNaLista = true;
+        break;
       }
-    });
-    if (exict === 1 || addDados.value === "") {
+    }
+    var valorCatalago = catalogo(produtoBuscar);
+    if (valorCatalago == 0 || existProdutosNaLista) {
+      var resposta = valorCatalago == 0 ? "Produto não encontrado" : "Produto já adicionado";
+      let message = document.createElement("div");
+      message.classList.add("pop-up-message");
+      message.id = "message";
+
+      let icon = document.createElement("i");
+      icon.classList.add("fa", "fa-times-circle", "iconNo");
+
+      let p = document.createElement("p");
+      p.classList.add("checkExict");
+      let text = document.createTextNode(resposta);
+      p.appendChild(text);
+
+      let overlay = document.createElement("div");
+      overlay.classList.add("overlay");
+      overlay.id = "overlay";
+
+      message.appendChild(icon);
+      message.appendChild(p);
+
+      document.body.appendChild(message);
+      document.body.appendChild(overlay);
+      let show = setTimeout(() => {
+        message.remove();
+        overlay.remove();
+      }, 2000);
+      exict = 1;
+    }
+    if (exict === 1 || produtoBuscar === "") {
       return;
     }
-    index = parseInt(index) + 1;
-    if (index > 20) {
-      localStorage.setItem("index", 1);
-      index = 1;
-    }
-    else {
-      localStorage.setItem("index", index);
-    }
 
+    if (listProdutosSalvos.length == 0) {
+      localStorage.setItem("produtos", JSON.stringify([produtoBuscar]));
+    } else {
+      localStorage.setItem("produtos", JSON.stringify([...listProdutosSalvos, produtoBuscar]));
+    }
     //Aqui vou consumir api para buscar imagens e descrição do produto
     const apiFetch = new FetchApi();
-    const api = await apiFetch.getApi(`https://fakestoreapi.com/products/${parseInt(index)}`);
+    const api = await apiFetch.getApi(`https://fakestoreapi.com/products/${parseInt(valorCatalago)}`);
 
     let prod = document.createElement("div");
     prod.classList.add("produtos");
 
     let p = document.createElement("p");
-    let text = document.createTextNode(addDados.value + "\t");
+    let text = document.createTextNode(produtoBuscar + "\t");
     p.classList.add("detail");
     p.style.textAlign = "center";
     p.appendChild(text);
@@ -130,7 +139,7 @@ export function sriptData() {
     ima.style.margin = "auto";
 
     let datatime = document.createElement("p");
-    let text6 = document.createTextNode(`Data: ${new Date().toLocaleDateString() +  " " + new Date().toLocaleTimeString('pt-BR')}`);
+    let text6 = document.createTextNode(`Data: ${new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString('pt-BR')}`);
     datatime.classList.add("detail");
     datatime.style.textAlign = "center";
     datatime.appendChild(text6);
@@ -183,7 +192,7 @@ export function sriptData() {
       ima.style.width = "100px";
       ima.style.height = "100px";
 
-      
+
       let p = document.createElement("p");
       let text = document.createTextNode(event.target.textContent);
       p.appendChild(text);
@@ -226,4 +235,51 @@ export function sriptData() {
     calcNumTasks();
     calcFinishedTasks();
   });
+
+  function catalogo(nomeProduto) {
+    switch (nomeProduto.toUpperCase()) {
+      case "BLUSA ROXA":
+        return 20;
+      case "BLUSA VERMELHA":
+        return 19;
+      case "BLUSA BRANCA":
+        return 18;
+      case "JACKETA AZUL":
+        return 17;
+      case "JACKETA PRETA":
+        return 16;
+      case "BLUSA DE FRIO ROXA":
+        return 15;
+      case "TV SANSUMNG":
+        return 14;
+      case "TV ACER":
+        return 13;
+      case "HD":
+        return 12;
+      case "SSD 256":
+        return 11;
+      case "SSD plus":
+        return 10;
+      case "HD PORTATIL" || "HD PORTÁTIL":
+        return 9;
+      case "BRINCO":
+        return 8;
+      case "ANEL":
+        return 7;
+      case "PULSEIRA":
+        return 6;
+      case "CORDAO" || "CORRENTE" || "CORDÃO":
+        return 5;
+      case "BLUSA MANGA LONGA":
+        return 4;
+      case "BLUSA MANGA LONGA MARRON":
+        return 3;
+      case "BLUSA":
+        return 2;
+      case "BOLSA":
+        return 1;
+      default:
+        return 0;
+    }
+  }
 }
