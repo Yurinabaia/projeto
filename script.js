@@ -237,6 +237,7 @@ export function sriptData() {
     calcFinishedTasks();
   });
 
+  //Função para buscar os index dos produtos na api
   function catalogo(nomeProduto) {
     switch (nomeProduto.toUpperCase()) {
       case "BLUSA ROXA":

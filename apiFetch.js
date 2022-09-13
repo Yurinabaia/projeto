@@ -1,3 +1,4 @@
+//Classe responsavel para fazer a requisição para a API
 export class FetchApi 
 {
   async postApi(url, body, token) {
